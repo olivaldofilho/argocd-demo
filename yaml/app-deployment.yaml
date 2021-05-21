@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: transaction-routine-api-deployment
+  namespace: transaction-routine-api
+spec:  
+  selector:
+    matchLabels:
+      app: transaction-routine-api
+  template:
+    metadata:
+      name: transaction-routine-api-pod
+      labels:
+        app: transaction-routine-api
+    spec:
+      containers:
+      - name: transaction-routine-api-container
+        image: olivaldofilho/transaction-routine-api:v1.0.0
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+        envFrom:
+        - configMapRef:
+            name: transaction-routine-api-configmap
+        - secretRef:
+            name: transaction-routine-api-secret
+        livenessProbe:
+          httpGet:
+            path: /healthcheck
+            port: 5000
+          periodSeconds: 10
+          failureThreshold: 3
+          initialDelaySeconds: 20
+        readinessProbe:
+          httpGet:
+            path: /healthcheck
+            port: 5000
+          periodSeconds: 10
+          failureThreshold: 5
+          initialDelaySeconds: 3        
+      imagePullSecrets:
+      - name: regcred

@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: transaction-routine-api-configmap
+  namespace: transaction-routine-api
+data:
+  PORT: "5000"
+  HTTP_READ_TIMEOUT: "60"
+  HTTP_WRITE_TIMEOUT: "60"
+  POSTGRES_DBHOST: "transactiondb-service.default.svc.cluster.local"
+  POSTGRES_DBNAME: transactiondb
+  POSTGRES_DBPORT: "5432"
+  POSTGRES_DBUSER: root
+  POSTGRES_DBSSLMODE: disable  
+  POSTGRES_DBTIMEZONE: America/Sao_Paulo
+  POSTGRES_DBMAXIDLECONNS: "16"
+  POSTGRES_DBMAXIDLETIME: "10"
+  POSTGRES_DBMAXOPENCONNS: "10"
+  POSTGRES_DBCONNMAXLIFETIME: "10"
