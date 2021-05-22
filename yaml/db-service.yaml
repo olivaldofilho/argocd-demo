@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: transactiondb-service
+  namespace: transaction-routine-api
 spec:
   type: LoadBalancer
   ports:
