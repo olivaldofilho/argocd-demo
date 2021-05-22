@@ -9,7 +9,7 @@ spec:
       app: transaction-routine-api
   template:
     metadata:
-      name: transaction-routine-api-pod
+      name: $APP_NAME
       labels:
         app: transaction-routine-api
     spec:
