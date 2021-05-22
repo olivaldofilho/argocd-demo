@@ -2,16 +2,16 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: transaction-routine-api-deployment
-  namespace: transaction-routine-api
+  namespace: $APP_NAME
 spec:  
   selector:
     matchLabels:
-      app: transaction-routine-api
+      app: $APP_NAME
   template:
     metadata:
       name: $APP_NAME
       labels:
-        app: transaction-routine-api
+        app: $APP_NAME
     spec:
       containers:
       - name: transaction-routine-api-container
